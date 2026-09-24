@@ -51,17 +51,17 @@
             {{-- Decorative Stats Row --}}
             <div class="hero-mini-stats reveal-up" data-delay="6">
                 <div class="mini-stat">
-                    <span class="mini-stat-number">—</span>
+                    <span class="mini-stat-number" data-count="{{ $stats['projects'] ?? 3 }}">{{ $stats['projects'] ?? 3 }}</span>
                     <span class="mini-stat-label" data-i18n="hero_stat_projects">Projects</span>
                 </div>
                 <div class="mini-stat-divider"></div>
                 <div class="mini-stat">
-                    <span class="mini-stat-number">—</span>
+                    <span class="mini-stat-number" data-count="{{ $stats['technologies'] ?? 8 }}">{{ $stats['technologies'] ?? 8 }}</span>
                     <span class="mini-stat-label" data-i18n="hero_stat_tech">Technologies</span>
                 </div>
                 <div class="mini-stat-divider"></div>
                 <div class="mini-stat">
-                    <span class="mini-stat-number">—</span>
+                    <span class="mini-stat-number" data-count="{{ $stats['years'] ?? 3 }}">{{ $stats['years'] ?? 3 }}</span>
                     <span class="mini-stat-label" data-i18n="hero_stat_years">Years Learning</span>
                 </div>
             </div>

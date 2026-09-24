@@ -34,7 +34,7 @@
 
         <div class="footer-bottom">
             <!-- PLACEHOLDER: Replace "Your Name" with your actual name -->
-            <p data-i18n-html="footer_copyright">&copy; {{ date('Y') }} Your Name. All rights reserved.</p>
+            <p data-i18n-html="footer_copyright">&copy; {{ date('Y') }} Ibnu Athatori Wibisono. All rights reserved.</p>
         </div>
     </div>
 </footer>

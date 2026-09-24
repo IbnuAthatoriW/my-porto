@@ -23,25 +23,19 @@
                         </svg>
                     </div>
                     <h3 class="skill-category-title">Frontend</h3>
-                    <span class="skill-category-count" data-i18n="skills_4skills">4 skills</span>
+                    <span class="skill-category-count">{{ count($skills['frontend'] ?? []) }} skills</span>
                 </div>
                 <div class="skill-list">
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">HTML</span></div>
-                        <div class="skill-bar"><div class="skill-bar-fill" data-width="90"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">CSS</span></div>
-                        <div class="skill-bar"><div class="skill-bar-fill" data-width="85"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">JavaScript</span></div>
-                        <div class="skill-bar"><div class="skill-bar-fill" data-width="75"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name" data-i18n="skills_responsive">Responsive Design</span></div>
-                        <div class="skill-bar"><div class="skill-bar-fill" data-width="85"></div></div>
-                    </div>
+                    @foreach($skills['frontend'] ?? [] as $skill)
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">{{ $skill['name'] }}</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="{{ $skill['percentage'] }}"></div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -57,25 +51,19 @@
                         </svg>
                     </div>
                     <h3 class="skill-category-title">Backend</h3>
-                    <span class="skill-category-count" data-i18n="skills_4skills">4 skills</span>
+                    <span class="skill-category-count">{{ count($skills['backend'] ?? []) }} skills</span>
                 </div>
                 <div class="skill-list">
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">Node.js</span></div>
-                        <div class="skill-bar"><div class="skill-bar-fill" data-width="70"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">Express.js</span></div>
-                        <div class="skill-bar"><div class="skill-bar-fill" data-width="70"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">Laravel</span></div>
-                        <div class="skill-bar"><div class="skill-bar-fill" data-width="65"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">REST API</span></div>
-                        <div class="skill-bar"><div class="skill-bar-fill" data-width="70"></div></div>
-                    </div>
+                    @foreach($skills['backend'] ?? [] as $skill)
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">{{ $skill['name'] }}</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="{{ $skill['percentage'] }}"></div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -88,21 +76,19 @@
                         </svg>
                     </div>
                     <h3 class="skill-category-title" data-i18n="skills_tools_title">Tools & Others</h3>
-                    <span class="skill-category-count" data-i18n="skills_3skills">3 skills</span>
+                    <span class="skill-category-count">{{ count($skills['tools'] ?? []) }} skills</span>
                 </div>
                 <div class="skill-list">
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">Git</span></div>
-                        <div class="skill-bar"><div class="skill-bar-fill" data-width="75"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name">GitHub</span></div>
-                        <div class="skill-bar"><div class="skill-bar-fill" data-width="80"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span class="skill-name" data-i18n="skills_uiux">UI/UX Basics</span></div>
-                        <div class="skill-bar"><div class="skill-bar-fill" data-width="60"></div></div>
-                    </div>
+                    @foreach($skills['tools'] ?? [] as $skill)
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">{{ $skill['name'] }}</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" data-width="{{ $skill['percentage'] }}"></div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

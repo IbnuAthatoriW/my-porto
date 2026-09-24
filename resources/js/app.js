@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSkillBars();
     initActiveNavLink();
     initLanguageSwitcher();
+    initCounterStats();
 });
 
 /* ============================================================
@@ -107,7 +108,7 @@ const translations = {
 
         // Footer
         footer_tagline: 'Building the future, one line of code at a time.',
-        footer_copyright: '&copy; 2026 Your Name. All rights reserved.',
+        footer_copyright: '&copy; 2026 Ibnu Athatori Wibisono. All rights reserved.',
     },
     id: {
         // Navbar
@@ -455,3 +456,45 @@ function initActiveNavLink() {
     window.addEventListener('scroll', setActiveLink, { passive: true });
     setActiveLink();
 }
+
+/* ============================================================
+   STAT COUNTER ANIMATION
+   ============================================================ */
+function initCounterStats() {
+    const statNumbers = document.querySelectorAll('[data-count]');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const targetCount = parseInt(el.dataset.count, 10) || 0;
+                const isFormatted = el.dataset.format === 'formatted';
+                const duration = 1500;
+                const startTime = performance.now();
+
+                function updateCount(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const easeProgress = 1 - Math.pow(1 - progress, 3);
+                    const currentVal = Math.floor(easeProgress * targetCount);
+
+                    if (isFormatted) {
+                        el.textContent = currentVal.toLocaleString('id-ID') + '+';
+                    } else {
+                        el.textContent = currentVal;
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCount);
+                    }
+                }
+
+                requestAnimationFrame(updateCount);
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    statNumbers.forEach(el => observer.observe(el));
+}
+

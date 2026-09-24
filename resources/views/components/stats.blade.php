@@ -9,11 +9,11 @@
                         <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
                     </svg>
                 </div>
-                {{-- PLACEHOLDER: Replace with your actual numbers --}}
-                <span class="stat-number" data-count="0">—</span>
+                <span class="stat-number" data-count="{{ $stats['projects'] ?? 3 }}">{{ $stats['projects'] ?? 3 }}</span>
                 <span class="stat-label" data-i18n="stats_projects">Projects Completed</span>
                 <div class="stat-accent"></div>
             </div>
+
             <div class="stat-card reveal-up" data-delay="2">
                 <div class="stat-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
@@ -21,11 +21,11 @@
                         <polyline points="8 6 2 12 8 18"/>
                     </svg>
                 </div>
-                {{-- PLACEHOLDER: Replace with your actual numbers --}}
-                <span class="stat-number" data-count="0">—</span>
+                <span class="stat-number" data-count="{{ $stats['technologies'] ?? 8 }}">{{ $stats['technologies'] ?? 8 }}</span>
                 <span class="stat-label" data-i18n="stats_tech">Technologies Learned</span>
                 <div class="stat-accent"></div>
             </div>
+
             <div class="stat-card reveal-up" data-delay="3">
                 <div class="stat-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
@@ -33,11 +33,11 @@
                         <polyline points="12 6 12 12 16 14"/>
                     </svg>
                 </div>
-                {{-- PLACEHOLDER: Replace with your actual numbers --}}
-                <span class="stat-number" data-count="0">—</span>
+                <span class="stat-number" data-count="{{ $stats['years'] ?? 3 }}">{{ $stats['years'] ?? 3 }}</span>
                 <span class="stat-label" data-i18n="stats_years">Years Learning</span>
                 <div class="stat-accent"></div>
             </div>
+
             <div class="stat-card reveal-up" data-delay="4">
                 <div class="stat-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
@@ -46,8 +46,7 @@
                         <path d="m2 12 10 5 10-5"/>
                     </svg>
                 </div>
-                {{-- PLACEHOLDER: Replace with your actual numbers --}}
-                <span class="stat-number" data-count="0">—</span>
+                <span class="stat-number" data-count="{{ $stats['lines_of_code'] ?? 10000 }}" data-format="formatted">{{ $stats['lines_of_code_formatted'] ?? '10.000+' }}</span>
                 <span class="stat-label" data-i18n="stats_lines">Lines of Code</span>
                 <div class="stat-accent"></div>
             </div>

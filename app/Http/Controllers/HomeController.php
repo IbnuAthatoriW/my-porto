@@ -16,7 +16,9 @@ class HomeController extends Controller
     public function index()
     {
         $projects = $this->gitHubService->getRepositories();
+        $stats = $this->gitHubService->getStats();
+        $skills = $this->gitHubService->getSkills();
 
-        return view('home', compact('projects'));
+        return view('home', compact('projects', 'stats', 'skills'));
     }
 }
