@@ -12,7 +12,7 @@
             {{-- Badge --}}
             <div class="hero-badge reveal-up">
                 <span class="badge-dot"></span>
-                <span data-i18n="hero_badge">INFORMATICS STUDENT • WEB DEVELOPER</span>
+                <span data-lang-id="MAHASISWA INFORMATIKA • WEB DEVELOPER">INFORMATICS STUDENT • WEB DEVELOPER</span>
             </div>
 
             {{-- Squad Number Style Decorative --}}
@@ -27,24 +27,24 @@
             </h1>
 
             {{-- Headline --}}
-            <p class="hero-headline reveal-up" data-delay="3" data-i18n-html="hero_headline">
+            <p class="hero-headline reveal-up" data-delay="3" data-lang-id-html="Menciptakan <span class=&quot;text-gold&quot;>pengalaman digital</span> dengan kode bersih dan desain modern.">
                 Crafting <span class="text-gold">digital experiences</span> with clean code and modern design.
             </p>
 
             {{-- Description --}}
-            <p class="hero-description reveal-up" data-delay="4" data-i18n="hero_description">
+            <p class="hero-description reveal-up" data-delay="4" data-lang-id="Seorang developer yang bersemangat, fokus membangun aplikasi web yang elegan, berperforma tinggi, dan berpusat pada pengguna. Mengubah ide menjadi kenyataan yang sempurna.">
                 A passionate developer focused on building elegant, performant, and user-centric web applications. Turning ideas into pixel-perfect reality.
             </p>
 
             {{-- CTA Buttons --}}
             <div class="hero-cta reveal-up" data-delay="5">
                 <a href="#projects" class="btn btn-primary">
-                    <span data-i18n="hero_cta_work">View My Work</span>
+                    <span data-lang-id="Lihat Karya Saya">View My Work</span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 17 5-5-5-5"/><path d="m13 17 5-5-5-5"/></svg>
                 </a>
                 <a href="#" class="btn btn-secondary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                    <span data-i18n="hero_cta_cv">Download CV</span>
+                    <span data-lang-id="Unduh CV">Download CV</span>
                 </a>
             </div>
 
@@ -52,17 +52,17 @@
             <div class="hero-mini-stats reveal-up" data-delay="6">
                 <div class="mini-stat">
                     <span class="mini-stat-number" data-count="{{ $stats['projects'] ?? 3 }}">{{ $stats['projects'] ?? 3 }}</span>
-                    <span class="mini-stat-label" data-i18n="hero_stat_projects">Projects</span>
+                    <span class="mini-stat-label" data-lang-id="Proyek">Projects</span>
                 </div>
                 <div class="mini-stat-divider"></div>
                 <div class="mini-stat">
                     <span class="mini-stat-number" data-count="{{ $stats['technologies'] ?? 8 }}">{{ $stats['technologies'] ?? 8 }}</span>
-                    <span class="mini-stat-label" data-i18n="hero_stat_tech">Technologies</span>
+                    <span class="mini-stat-label" data-lang-id="Teknologi">Technologies</span>
                 </div>
                 <div class="mini-stat-divider"></div>
                 <div class="mini-stat">
                     <span class="mini-stat-number" data-count="{{ $stats['years'] ?? 3 }}">{{ $stats['years'] ?? 3 }}</span>
-                    <span class="mini-stat-label" data-i18n="hero_stat_years">Years Learning</span>
+                    <span class="mini-stat-label" data-lang-id="Tahun Belajar">Years Learning</span>
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="visual-card-badge">
                         <span class="visual-badge-icon">⟨/⟩</span>
-                        <span class="visual-badge-text" data-i18n="hero_badge_developer">Developer</span>
+                        <span class="visual-badge-text" data-lang-id="Developer">Developer</span>
                     </div>
                     <div class="visual-card-accent"></div>
                 </div>
@@ -100,6 +100,6 @@
         <div class="scroll-mouse">
             <div class="scroll-dot"></div>
         </div>
-        <span data-i18n="hero_scroll">Scroll Down</span>
+        <span data-lang-id="Gulir ke Bawah">Scroll Down</span>
     </div>
 </section>

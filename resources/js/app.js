@@ -12,199 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initActiveNavLink();
     initLanguageSwitcher();
     initCounterStats();
+    initContactForm();
 });
 
 /* ============================================================
-   TRANSLATIONS
-   ============================================================ */
-const translations = {
-    en: {
-        // Navbar
-        nav_home: 'Home',
-        nav_about: 'About',
-        nav_skills: 'Skills',
-        nav_projects: 'Projects',
-        nav_experience: 'Experience',
-        nav_contact: 'Contact',
-
-        // Hero
-        hero_badge: 'INFORMATICS STUDENT • WEB DEVELOPER',
-        hero_headline: 'Crafting <span class="text-gold">digital experiences</span> with clean code and modern design.',
-        hero_description: 'A passionate developer focused on building elegant, performant, and user-centric web applications. Turning ideas into pixel-perfect reality.',
-        hero_cta_work: 'View My Work',
-        hero_cta_cv: 'Download CV',
-        hero_stat_projects: 'Projects',
-        hero_stat_tech: 'Technologies',
-        hero_stat_years: 'Years Learning',
-        hero_badge_developer: 'Developer',
-        hero_scroll: 'Scroll Down',
-
-        // About
-        about_title: 'About Me',
-        about_photo: 'Your Photo',
-        about_intro: 'Hello! I\'m a Ibnu, an Informatics undergraduate student at Telkom University with a strong interest in Web Development, Software Development, and UI/UX.',
-        about_desc: 'I enjoy building websites and applications that are not only functional, but also <strong>modern, responsive, and user-friendly</strong>. I have experience working with technologies such as <strong>HTML, CSS, JavaScript, Node.js, Express.js, Laravel, REST API, and MySQL</strong>.<br><br>Throughout my studies and various projects, I have developed both my technical and problem-solving skills while exploring different aspects of frontend and backend development. I also enjoy learning new technologies, collaborating with others, and continuously improving my development skills.<br><br>For me, development is not just about writing code. It is about <strong>turning ideas into meaningful digital solutions through thoughtful design, clean code, and a good user experience</strong>.',
-
-        about_education_label: 'Education',
-        about_education_value: 'Informatics Engineering',
-        about_focus_label: 'Focus',
-        about_focus_value: 'Web Development',
-        about_status_value: 'Active Student',
-        about_location_label: 'Location',
-
-        // Skills
-        skills_title: 'Skills & Arsenal',
-        skills_subtitle: 'Technologies and tools I work with to bring ideas to life.',
-        skills_4skills: '4 skills',
-        skills_3skills: '3 skills',
-        skills_tools_title: 'Tools & Others',
-        skills_responsive: 'Responsive Design',
-        skills_uiux: 'UI/UX Basics',
-
-        // Projects
-        projects_title: 'Featured Projects',
-        projects_subtitle: 'A selection of my public repositories directly synced from GitHub.',
-        projects_screenshot: 'Project Screenshot',
-        projects_view_github: 'View All Repositories on GitHub',
-        projects_synced: 'Auto-synced from GitHub',
-        projects_empty: 'No public repositories found.',
-        project1_name: 'Project Name',
-        project1_desc: 'A brief description of your project goes here. Explain what it does and the problem it solves.',
-        project2_name: 'Project Name',
-        project2_desc: 'Another project description placeholder. Replace this with your actual project details.',
-        project3_name: 'Project Name',
-        project3_desc: 'A third project description placeholder. Replace with your real project information.',
-
-        // Experience
-        exp_title: 'Experience & Education',
-        exp_education: 'Education',
-        exp_experience: 'Experience',
-        exp_achievement: 'Achievement',
-        exp1_date: '20XX — Present',
-        exp1_title: 'Informatics Engineering',
-        exp1_subtitle: 'Your University Name',
-        exp1_desc: 'Currently pursuing a degree in Informatics Engineering, focusing on web development, software engineering, and computer science fundamentals.',
-        exp2_title: 'Your Role / Position',
-        exp2_subtitle: 'Organization / Company Name',
-        exp2_desc: 'Describe your role, responsibilities, and achievements here. Replace this placeholder with your actual experience details.',
-        exp3_title: 'Your Achievement',
-        exp3_subtitle: 'Event / Organization',
-        exp3_desc: 'Describe your achievement here. Replace this placeholder with your actual details.',
-
-        // Stats
-        stats_projects: 'Projects Completed',
-        stats_tech: 'Technologies Learned',
-        stats_years: 'Years Learning',
-        stats_lines: 'Lines of Code',
-
-        // Contact
-        contact_title: 'Get In Touch',
-        contact_subtitle: 'Have a project in mind or want to collaborate? Feel free to reach out.',
-        contact_form_name: 'Name',
-        contact_form_name_ph: 'Your name',
-        contact_form_message: 'Message',
-        contact_form_message_ph: 'Your message...',
-        contact_form_send: 'Send Message',
-
-        // Footer
-        footer_tagline: 'Building the future, one line of code at a time.',
-        footer_copyright: '&copy; 2026 Ibnu Athatori Wibisono. All rights reserved.',
-    },
-    id: {
-        // Navbar
-        nav_home: 'Beranda',
-        nav_about: 'Tentang',
-        nav_skills: 'Keahlian',
-        nav_projects: 'Proyek',
-        nav_experience: 'Pengalaman',
-        nav_contact: 'Kontak',
-
-        // Hero
-        hero_badge: 'MAHASISWA INFORMATIKA • WEB DEVELOPER',
-        hero_headline: 'Menciptakan <span class="text-gold">pengalaman digital</span> dengan kode bersih dan desain modern.',
-        hero_description: 'Seorang developer yang bersemangat, fokus membangun aplikasi web yang elegan, berperforma tinggi, dan berpusat pada pengguna. Mengubah ide menjadi kenyataan yang sempurna.',
-        hero_cta_work: 'Lihat Karya Saya',
-        hero_cta_cv: 'Unduh CV',
-        hero_stat_projects: 'Proyek',
-        hero_stat_tech: 'Teknologi',
-        hero_stat_years: 'Tahun Belajar',
-        hero_badge_developer: 'Developer',
-        hero_scroll: 'Gulir ke Bawah',
-
-        // About
-        about_title: 'Tentang Saya',
-        about_photo: 'Foto Anda',
-        about_intro: 'Halo! Saya Ibnu, mahasiswa S1 Informatika di Telkom University dengan minat yang kuat di bidang Web Development, Software Development, dan UI/UX.',
-        about_desc: 'Saya senang membangun website dan aplikasi yang tidak hanya berfungsi dengan baik, tetapi juga <strong>modern, responsif, dan mudah digunakan</strong>. Saya memiliki pengalaman menggunakan berbagai teknologi seperti <strong>HTML, CSS, JavaScript, Node.js, Express.js, Laravel, REST API, dan MySQL</strong>.<br><br>Selama perkuliahan dan mengerjakan berbagai project, saya mengembangkan kemampuan teknis dan problem solving sekaligus mempelajari berbagai aspek pengembangan frontend dan backend. Saya juga senang mempelajari teknologi baru, bekerja sama dengan orang lain, dan terus meningkatkan kemampuan dalam bidang software development.<br><br>Bagi saya, development bukan hanya tentang menulis kode. Development adalah tentang <strong>mengubah ide menjadi solusi digital yang bermakna melalui desain yang baik, kode yang terstruktur, dan pengalaman pengguna yang nyaman</strong>.',
-        about_education_label: 'Pendidikan',
-        about_education_value: 'Teknik Informatika',
-        about_focus_label: 'Fokus',
-        about_focus_value: 'Pengembangan Web',
-        about_status_value: 'Mahasiswa Aktif',
-        about_location_label: 'Lokasi',
-
-        // Skills
-        skills_title: 'Keahlian & Kemampuan',
-        skills_subtitle: 'Teknologi dan alat yang saya gunakan untuk mewujudkan ide menjadi kenyataan.',
-        skills_4skills: '4 keahlian',
-        skills_3skills: '3 keahlian',
-        skills_tools_title: 'Alat & Lainnya',
-        skills_responsive: 'Desain Responsif',
-        skills_uiux: 'Dasar UI/UX',
-
-        // Projects
-        projects_title: 'Proyek Unggulan',
-        projects_subtitle: 'Kumpulan proyek publik saya yang terhubung langsung dari GitHub.',
-        projects_screenshot: 'Screenshot Proyek',
-        projects_view_github: 'Lihat Semua Repositori di GitHub',
-        projects_synced: 'Otomatis terhubung dari GitHub',
-        projects_empty: 'Tidak ada repositori publik ditemukan.',
-        project1_name: 'Nama Proyek',
-        project1_desc: 'Deskripsi singkat proyek Anda di sini. Jelaskan apa yang dilakukan dan masalah yang diselesaikan.',
-        project2_name: 'Nama Proyek',
-        project2_desc: 'Placeholder deskripsi proyek lainnya. Ganti ini dengan detail proyek Anda yang sebenarnya.',
-        project3_name: 'Nama Proyek',
-        project3_desc: 'Placeholder deskripsi proyek ketiga. Ganti dengan informasi proyek Anda yang sebenarnya.',
-
-        // Experience
-        exp_title: 'Pengalaman & Pendidikan',
-        exp_education: 'Pendidikan',
-        exp_experience: 'Pengalaman',
-        exp_achievement: 'Pencapaian',
-        exp1_date: '20XX — Sekarang',
-        exp1_title: 'Teknik Informatika',
-        exp1_subtitle: 'Nama Universitas Anda',
-        exp1_desc: 'Saat ini sedang menempuh gelar Teknik Informatika, dengan fokus pada pengembangan web, rekayasa perangkat lunak, dan dasar-dasar ilmu komputer.',
-        exp2_title: 'Peran / Posisi Anda',
-        exp2_subtitle: 'Nama Organisasi / Perusahaan',
-        exp2_desc: 'Jelaskan peran, tanggung jawab, dan pencapaian Anda di sini. Ganti placeholder ini dengan detail pengalaman Anda yang sebenarnya.',
-        exp3_title: 'Pencapaian Anda',
-        exp3_subtitle: 'Acara / Organisasi',
-        exp3_desc: 'Jelaskan pencapaian Anda di sini. Ganti placeholder ini dengan detail Anda yang sebenarnya.',
-
-        // Stats
-        stats_projects: 'Proyek Selesai',
-        stats_tech: 'Teknologi Dipelajari',
-        stats_years: 'Tahun Belajar',
-        stats_lines: 'Baris Kode',
-
-        // Contact
-        contact_title: 'Hubungi Saya',
-        contact_subtitle: 'Punya proyek atau ingin berkolaborasi? Jangan ragu untuk menghubungi saya.',
-        contact_form_name: 'Nama',
-        contact_form_name_ph: 'Nama Anda',
-        contact_form_message: 'Pesan',
-        contact_form_message_ph: 'Pesan Anda...',
-        contact_form_send: 'Kirim Pesan',
-
-        // Footer
-        footer_tagline: 'Membangun masa depan, satu baris kode pada satu waktu.',
-        footer_copyright: '&copy; 2026 Your Name. Hak cipta dilindungi.',
-    }
-};
-
-/* ============================================================
-   LANGUAGE SWITCHER
+   LANGUAGE SWITCHER (Blade is the Single Source of Truth)
    ============================================================ */
 function initLanguageSwitcher() {
     const langToggle = document.getElementById('langToggle');
@@ -270,34 +82,42 @@ function initLanguageSwitcher() {
 }
 
 function applyLanguage(lang) {
-    const t = translations[lang];
-    if (!t) return;
-
-    // Update text content (data-i18n)
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.dataset.i18n;
-        if (t[key] !== undefined) {
-            el.textContent = t[key];
+    // 1. Text elements with data-lang-id
+    document.querySelectorAll('[data-lang-id]').forEach(el => {
+        if (!el.dataset.langDefault) {
+            el.dataset.langDefault = el.textContent.trim();
+        }
+        if (lang === 'id' && el.dataset.langId) {
+            el.textContent = el.dataset.langId;
+        } else {
+            el.textContent = el.dataset.langDefault;
         }
     });
 
-    // Update innerHTML (data-i18n-html) — for content with HTML tags like <span>
-    document.querySelectorAll('[data-i18n-html]').forEach(el => {
-        const key = el.dataset.i18nHtml;
-        if (t[key] !== undefined) {
-            el.innerHTML = t[key];
+    // 2. HTML elements with data-lang-id-html
+    document.querySelectorAll('[data-lang-id-html]').forEach(el => {
+        if (!el.dataset.langDefaultHtml) {
+            el.dataset.langDefaultHtml = el.innerHTML.trim();
+        }
+        if (lang === 'id' && el.dataset.langIdHtml) {
+            el.innerHTML = el.dataset.langIdHtml;
+        } else {
+            el.innerHTML = el.dataset.langDefaultHtml;
         }
     });
 
-    // Update placeholders (data-i18n-placeholder)
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        const key = el.dataset.i18nPlaceholder;
-        if (t[key] !== undefined) {
-            el.placeholder = t[key];
+    // 3. Placeholder elements with data-lang-id-placeholder
+    document.querySelectorAll('[data-lang-id-placeholder]').forEach(el => {
+        if (!el.dataset.langDefaultPlaceholder) {
+            el.dataset.langDefaultPlaceholder = el.placeholder;
+        }
+        if (lang === 'id' && el.dataset.langIdPlaceholder) {
+            el.placeholder = el.dataset.langIdPlaceholder;
+        } else {
+            el.placeholder = el.dataset.langDefaultPlaceholder;
         }
     });
 
-    // Update the HTML lang attribute
     document.documentElement.lang = lang === 'id' ? 'id' : 'en';
 }
 
@@ -497,4 +317,75 @@ function initCounterStats() {
 
     statNumbers.forEach(el => observer.observe(el));
 }
+
+/* ============================================================
+   CONTACT FORM SUBMISSION (AJAX)
+   ============================================================ */
+function initContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+
+    const contactAlert = document.getElementById('contactAlert');
+    const submitBtn = document.getElementById('contactSubmitBtn');
+    const btnText = document.getElementById('contactBtnText');
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (contactAlert) {
+            contactAlert.style.display = 'none';
+            contactAlert.className = 'contact-alert';
+        }
+
+        const originalText = btnText ? btnText.textContent : 'Send Message';
+        if (submitBtn) submitBtn.disabled = true;
+        if (btnText) btnText.textContent = document.documentElement.lang === 'id' ? 'Mengirim...' : 'Sending...';
+
+        try {
+            const formData = new FormData(contactForm);
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                if (contactAlert) {
+                    contactAlert.className = 'contact-alert alert-success';
+                    contactAlert.textContent = data.message || 'Pesan Anda berhasil dikirim!';
+                    contactAlert.style.display = 'block';
+                }
+                contactForm.reset();
+            } else {
+                let errorMsg = data.message || (document.documentElement.lang === 'id' ? 'Terjadi kesalahan saat mengirim pesan.' : 'An error occurred while sending your message.');
+                if (data.errors) {
+                    const firstErr = Object.values(data.errors)[0];
+                    if (firstErr && firstErr[0]) {
+                        errorMsg = firstErr[0];
+                    }
+                }
+                if (contactAlert) {
+                    contactAlert.className = 'contact-alert alert-error';
+                    contactAlert.textContent = errorMsg;
+                    contactAlert.style.display = 'block';
+                }
+            }
+        } catch (err) {
+            if (contactAlert) {
+                contactAlert.className = 'contact-alert alert-error';
+                contactAlert.textContent = document.documentElement.lang === 'id' ? 'Gagal terhubung ke server. Silakan coba lagi.' : 'Failed to connect to server. Please try again.';
+                contactAlert.style.display = 'block';
+            }
+        } finally {
+            if (submitBtn) submitBtn.disabled = false;
+            if (btnText) btnText.textContent = originalText;
+        }
+    });
+}
+
 

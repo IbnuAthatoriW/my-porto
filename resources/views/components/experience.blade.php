@@ -4,12 +4,12 @@
         {{-- Section Header --}}
         <div class="section-header reveal-up">
             <span class="section-tag">04</span>
-            <h2 class="section-title" data-i18n="exp_title">Experience & Education</h2>
+            <h2 class="section-title" data-lang-id="Pengalaman & Pendidikan">Experience & Education</h2>
             <div class="section-line"></div>
         </div>
 
         <div class="timeline">
-            {{-- Timeline Item 1 - PLACEHOLDER --}}
+            {{-- Timeline Item 1 --}}
             <div class="timeline-item reveal-up" data-delay="1">
                 <div class="timeline-marker">
                     <div class="timeline-dot"></div>
@@ -17,22 +17,18 @@
                 </div>
                 <div class="timeline-content">
                     <div class="timeline-header">
-                        <span class="timeline-badge" data-i18n="exp_education">Education</span>
-                        <!-- PLACEHOLDER: Replace with your actual dates -->
-                        <span class="timeline-date" data-i18n="exp1_date">20XX — Present</span>
+                        <span class="timeline-badge" data-lang-id="Pendidikan">Education</span>
+                        <span class="timeline-date" data-lang-id="2023 — Sekarang">2023 — Present</span>
                     </div>
-                    <!-- PLACEHOLDER: Replace with your actual title -->
-                    <h3 class="timeline-title" data-i18n="exp1_title">Informatics Engineering</h3>
-                    <!-- PLACEHOLDER: Replace with your university name -->
-                    <p class="timeline-subtitle" data-i18n="exp1_subtitle">Your University Name</p>
-                    <!-- PLACEHOLDER: Replace with your description -->
-                    <p class="timeline-description" data-i18n="exp1_desc">
-                        Currently pursuing a degree in Informatics Engineering, focusing on web development, software engineering, and computer science fundamentals.
+                    <h3 class="timeline-title" data-lang-id="Informatika">Informatics</h3>
+                    <p class="timeline-subtitle" data-lang-id="Telkom University">Telkom University</p>
+                    <p class="timeline-description" data-lang-id="Saat ini sedang menempuh gelar Informatika, dengan fokus pada pengembangan web, rekayasa perangkat lunak, dan dasar-dasar ilmu komputer.">
+                        Currently pursuing a degree in Informatics, focusing on web development, software engineering, and computer science fundamentals.
                     </p>
                 </div>
             </div>
 
-            {{-- Timeline Item 2 - PLACEHOLDER --}}
+            {{-- Timeline Item 2 --}}
             <div class="timeline-item reveal-up" data-delay="2">
                 <div class="timeline-marker">
                     <div class="timeline-dot"></div>
@@ -40,34 +36,30 @@
                 </div>
                 <div class="timeline-content">
                     <div class="timeline-header">
-                        <span class="timeline-badge" data-i18n="exp_experience">Experience</span>
-                        <!-- PLACEHOLDER: Replace with your actual dates -->
-                        <span class="timeline-date">20XX — 20XX</span>
+                        <span class="timeline-badge" data-lang-id="Pengalaman">Experience</span>
+                        <span class="timeline-date">2026</span>
                     </div>
-                    <!-- PLACEHOLDER: Replace with your actual experience -->
-                    <h3 class="timeline-title" data-i18n="exp2_title">Your Role / Position</h3>
-                    <p class="timeline-subtitle" data-i18n="exp2_subtitle">Organization / Company Name</p>
-                    <p class="timeline-description" data-i18n="exp2_desc">
-                        Describe your role, responsibilities, and achievements here. Replace this placeholder with your actual experience details.
+                    <h3 class="timeline-title" data-lang-id="Magang Pengembangan Web">Internship Web Developer</h3>
+                    <p class="timeline-subtitle" data-lang-id="PT Dahana (Persero)">PT Dahana (Persero)</p>
+                    <p class="timeline-description" data-lang-id="Saya melakukan magang di PT Dahana (Persero) di Divisi Sistem Teknologi Informasi, saya mengerjakan Pengembangan Formulir Web Dahana.">
+                        I did an internship at PT Dahana (Persero) in the Information Technology Systems Division, I did Dahana Web Form Development
                     </p>
                 </div>
             </div>
 
-            {{-- Timeline Item 3 - PLACEHOLDER --}}
+            {{-- Timeline Item 3 --}}
             <div class="timeline-item reveal-up" data-delay="3">
                 <div class="timeline-marker">
                     <div class="timeline-dot"></div>
                 </div>
                 <div class="timeline-content">
                     <div class="timeline-header">
-                        <span class="timeline-badge" data-i18n="exp_achievement">Achievement</span>
-                        <!-- PLACEHOLDER: Replace with your actual date -->
+                        <span class="timeline-badge" data-lang-id="Pencapaian">Achievement</span>
                         <span class="timeline-date">20XX</span>
                     </div>
-                    <!-- PLACEHOLDER: Replace with your actual achievement -->
-                    <h3 class="timeline-title" data-i18n="exp3_title">Your Achievement</h3>
-                    <p class="timeline-subtitle" data-i18n="exp3_subtitle">Event / Organization</p>
-                    <p class="timeline-description" data-i18n="exp3_desc">
+                    <h3 class="timeline-title" data-lang-id="Pencapaian Anda">Your Achievement</h3>
+                    <p class="timeline-subtitle" data-lang-id="Acara / Organisasi">Event / Organization</p>
+                    <p class="timeline-description" data-lang-id="Jelaskan pencapaian Anda di sini. Ganti placeholder ini dengan detail Anda yang sebenarnya.">
                         Describe your achievement here. Replace this placeholder with your actual details.
                     </p>
                 </div>

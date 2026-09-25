@@ -3,19 +3,19 @@
     <div class="navbar-container">
         {{-- Logo / Monogram --}}
         <a href="#home" class="navbar-logo">
-            <span class="logo-monogram">YN</span>
+            <span class="logo-monogram">Noe</span>
             <span class="logo-divider"></span>
-            <span class="logo-text">Portfolio</span>
+            <span class="logo-text">Portofolio</span>
         </a>
 
         {{-- Desktop Navigation --}}
         <ul class="navbar-menu" id="navMenu">
-            <li><a href="#home" class="nav-link active" data-i18n="nav_home">Home</a></li>
-            <li><a href="#about" class="nav-link" data-i18n="nav_about">About</a></li>
-            <li><a href="#skills" class="nav-link" data-i18n="nav_skills">Skills</a></li>
-            <li><a href="#projects" class="nav-link" data-i18n="nav_projects">Projects</a></li>
-            <li><a href="#experience" class="nav-link" data-i18n="nav_experience">Experience</a></li>
-            <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a></li>
+            <li><a href="#home" class="nav-link active" data-lang-id="Beranda">Home</a></li>
+            <li><a href="#about" class="nav-link" data-lang-id="Tentang">About</a></li>
+            <li><a href="#skills" class="nav-link" data-lang-id="Keahlian">Skills</a></li>
+            <li><a href="#projects" class="nav-link" data-lang-id="Proyek">Projects</a></li>
+            <li><a href="#experience" class="nav-link" data-lang-id="Pengalaman">Experience</a></li>
+            <li><a href="#contact" class="nav-link" data-lang-id="Kontak">Contact</a></li>
         </ul>
 
         <div class="navbar-actions">
@@ -52,12 +52,12 @@
     {{-- Mobile Menu Overlay --}}
     <div class="mobile-menu" id="mobileMenu">
         <ul class="mobile-menu-list">
-            <li><a href="#home" class="mobile-nav-link" data-i18n="nav_home">Home</a></li>
-            <li><a href="#about" class="mobile-nav-link" data-i18n="nav_about">About</a></li>
-            <li><a href="#skills" class="mobile-nav-link" data-i18n="nav_skills">Skills</a></li>
-            <li><a href="#projects" class="mobile-nav-link" data-i18n="nav_projects">Projects</a></li>
-            <li><a href="#experience" class="mobile-nav-link" data-i18n="nav_experience">Experience</a></li>
-            <li><a href="#contact" class="mobile-nav-link" data-i18n="nav_contact">Contact</a></li>
+            <li><a href="#home" class="mobile-nav-link" data-lang-id="Beranda">Home</a></li>
+            <li><a href="#about" class="mobile-nav-link" data-lang-id="Tentang">About</a></li>
+            <li><a href="#skills" class="mobile-nav-link" data-lang-id="Keahlian">Skills</a></li>
+            <li><a href="#projects" class="mobile-nav-link" data-lang-id="Proyek">Projects</a></li>
+            <li><a href="#experience" class="mobile-nav-link" data-lang-id="Pengalaman">Experience</a></li>
+            <li><a href="#contact" class="mobile-nav-link" data-lang-id="Kontak">Contact</a></li>
         </ul>
     </div>
 </nav>

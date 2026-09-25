@@ -1623,6 +1623,36 @@ a {
     min-height: 120px;
 }
 
+.contact-alert {
+    padding: 0.85rem 1rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    line-height: 1.4;
+    transition: all var(--transition-base);
+}
+
+.contact-alert.alert-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #065f46;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.contact-alert.alert-error {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #991b1b;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.form-error {
+    font-size: 0.75rem;
+    color: #dc2626;
+    margin-top: 0.2rem;
+    font-weight: 500;
+}
+
+
 /* ============================================================
    FOOTER
    ============================================================ */

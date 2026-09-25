@@ -10,7 +10,7 @@
                     </svg>
                 </div>
                 <span class="stat-number" data-count="{{ $stats['projects'] ?? 3 }}">{{ $stats['projects'] ?? 3 }}</span>
-                <span class="stat-label" data-i18n="stats_projects">Projects Completed</span>
+                <span class="stat-label" data-lang-id="Proyek Selesai">Projects Completed</span>
                 <div class="stat-accent"></div>
             </div>
 
@@ -22,7 +22,7 @@
                     </svg>
                 </div>
                 <span class="stat-number" data-count="{{ $stats['technologies'] ?? 8 }}">{{ $stats['technologies'] ?? 8 }}</span>
-                <span class="stat-label" data-i18n="stats_tech">Technologies Learned</span>
+                <span class="stat-label" data-lang-id="Teknologi Dipelajari">Technologies Learned</span>
                 <div class="stat-accent"></div>
             </div>
 
@@ -34,7 +34,7 @@
                     </svg>
                 </div>
                 <span class="stat-number" data-count="{{ $stats['years'] ?? 3 }}">{{ $stats['years'] ?? 3 }}</span>
-                <span class="stat-label" data-i18n="stats_years">Years Learning</span>
+                <span class="stat-label" data-lang-id="Tahun Belajar">Years Learning</span>
                 <div class="stat-accent"></div>
             </div>
 
@@ -47,7 +47,7 @@
                     </svg>
                 </div>
                 <span class="stat-number" data-count="{{ $stats['lines_of_code'] ?? 10000 }}" data-format="formatted">{{ $stats['lines_of_code_formatted'] ?? '10.000+' }}</span>
-                <span class="stat-label" data-i18n="stats_lines">Lines of Code</span>
+                <span class="stat-label" data-lang-id="Baris Kode">Lines of Code</span>
                 <div class="stat-accent"></div>
             </div>
         </div>

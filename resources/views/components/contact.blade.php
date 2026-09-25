@@ -4,11 +4,11 @@
         {{-- Section Header --}}
         <div class="section-header reveal-up">
             <span class="section-tag">05</span>
-            <h2 class="section-title" data-i18n="contact_title">Get In Touch</h2>
+            <h2 class="section-title" data-lang-id="Hubungi Saya">Get In Touch</h2>
             <div class="section-line"></div>
         </div>
 
-        <p class="section-subtitle reveal-up" data-delay="1" data-i18n="contact_subtitle">
+        <p class="section-subtitle reveal-up" data-delay="1" data-lang-id="Punya proyek atau ingin berkolaborasi? Jangan ragu untuk menghubungi saya.">
             Have a project in mind or want to collaborate? Feel free to reach out.
         </p>
 
@@ -72,23 +72,45 @@
 
             {{-- Contact Form --}}
             <div class="contact-form-wrapper reveal-up" data-delay="3">
-                <form class="contact-form" id="contactForm">
+                @if(session('success'))
+                    <div class="contact-alert alert-success" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if(session('error'))
+                    <div class="contact-alert alert-error" role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                <div id="contactAlert" class="contact-alert" style="display: none;"></div>
+
+                <form class="contact-form" id="contactForm" action="{{ route('contact.send') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="name" class="form-label" data-i18n="contact_form_name">Name</label>
-                        <input type="text" id="name" name="name" class="form-input" data-i18n-placeholder="contact_form_name_ph" placeholder="Your name" required>
+                        <label for="name" class="form-label" data-lang-id="Nama">Name</label>
+                        <input type="text" id="name" name="name" class="form-input" data-lang-id-placeholder="Nama Anda" placeholder="Your name" value="{{ old('name') }}" required>
+                        @error('name')
+                            <span class="form-error">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" value="{{ old('email') }}" required>
+                        @error('email')
+                            <span class="form-error">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="message" class="form-label" data-i18n="contact_form_message">Message</label>
-                        <textarea id="message" name="message" class="form-input form-textarea" rows="5" data-i18n-placeholder="contact_form_message_ph" placeholder="Your message..." required></textarea>
+                        <label for="message" class="form-label" data-lang-id="Pesan">Message</label>
+                        <textarea id="message" name="message" class="form-input form-textarea" rows="5" data-lang-id-placeholder="Pesan Anda..." placeholder="Your message..." required>{{ old('message') }}</textarea>
+                        @error('message')
+                            <span class="form-error">{{ $message }}</span>
+                        @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary btn-full">
-                        <span data-i18n="contact_form_send">Send Message</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    <button type="submit" class="btn btn-primary btn-full" id="contactSubmitBtn">
+                        <span id="contactBtnText" data-lang-id="Kirim Pesan">Send Message</span>
+                        <svg id="contactBtnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                     </button>
                 </form>
             </div>

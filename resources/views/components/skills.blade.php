@@ -4,11 +4,11 @@
         {{-- Section Header --}}
         <div class="section-header reveal-up">
             <span class="section-tag">02</span>
-            <h2 class="section-title" data-i18n="skills_title">Skills & Arsenal</h2>
+            <h2 class="section-title" data-lang-id="Keahlian & Kemampuan">Skills & Arsenal</h2>
             <div class="section-line"></div>
         </div>
 
-        <p class="section-subtitle reveal-up" data-delay="1" data-i18n="skills_subtitle">
+        <p class="section-subtitle reveal-up" data-delay="1" data-lang-id="Teknologi dan alat yang saya gunakan untuk mewujudkan ide menjadi kenyataan.">
             Technologies and tools I work with to bring ideas to life.
         </p>
 
@@ -75,7 +75,7 @@
                             <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
                         </svg>
                     </div>
-                    <h3 class="skill-category-title" data-i18n="skills_tools_title">Tools & Others</h3>
+                    <h3 class="skill-category-title" data-lang-id="Alat & Lainnya">Tools & Others</h3>
                     <span class="skill-category-count">{{ count($skills['tools'] ?? []) }} skills</span>
                 </div>
                 <div class="skill-list">

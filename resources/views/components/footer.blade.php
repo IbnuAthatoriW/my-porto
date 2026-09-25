@@ -4,19 +4,19 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="#home" class="footer-logo">
-                    <span class="logo-monogram">YN</span>
+                    <span class="logo-monogram">Noe</span>
                     <span class="logo-divider"></span>
-                    <span class="logo-text">Portfolio</span>
+                    <span class="logo-text">Portofolio</span>
                 </a>
-                <p class="footer-tagline" data-i18n="footer_tagline">Building the future, one line of code at a time.</p>
+                <p class="footer-tagline" data-lang-id="Membangun masa depan, satu baris kode pada satu waktu.">Building the future, one line of code at a time.</p>
             </div>
 
             <div class="footer-links">
-                <a href="#home" data-i18n="nav_home">Home</a>
-                <a href="#about" data-i18n="nav_about">About</a>
-                <a href="#skills" data-i18n="nav_skills">Skills</a>
-                <a href="#projects" data-i18n="nav_projects">Projects</a>
-                <a href="#contact" data-i18n="nav_contact">Contact</a>
+                <a href="#home" data-lang-id="Beranda">Home</a>
+                <a href="#about" data-lang-id="Tentang">About</a>
+                <a href="#skills" data-lang-id="Keahlian">Skills</a>
+                <a href="#projects" data-lang-id="Proyek">Projects</a>
+                <a href="#contact" data-lang-id="Kontak">Contact</a>
             </div>
 
             <div class="footer-social">
@@ -33,8 +33,7 @@
         </div>
 
         <div class="footer-bottom">
-            <!-- PLACEHOLDER: Replace "Your Name" with your actual name -->
-            <p data-i18n-html="footer_copyright">&copy; {{ date('Y') }} Ibnu Athatori Wibisono. All rights reserved.</p>
+            <p data-lang-id-html="&copy; {{ date('Y') }} Ibnu Athatori Wibisono. Hak cipta dilindungi.">&copy; {{ date('Y') }} Ibnu Athatori Wibisono. All rights reserved.</p>
         </div>
     </div>
 </footer>
