@@ -62,7 +62,7 @@
                         <div class="info-card-content">
                             <span class="info-card-label" data-lang-id="Pendidikan">Education</span>
                             <!-- PLACEHOLDER: Replace with your university -->
-                            <span class="info-card-value" data-lang-id="Teknik Informatika">Informatics Engineering</span>
+                            <span class="info-card-value" data-lang-id="Informatika">Informatics</span>
                         </div>
                     </div>
                     <div class="about-info-card">

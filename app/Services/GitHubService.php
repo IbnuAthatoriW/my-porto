@@ -9,38 +9,64 @@ use Illuminate\Support\Facades\Log;
 class GitHubService
 {
     /**
-     * The GitHub username to fetch repositories for.
+     * Get the configured GitHub username.
      */
-    protected string $username = 'IbnuAthatoriW';
+    public function getUsername(): string
+    {
+        return env('GITHUB_USERNAME', 'IbnuAthatoriW');
+    }
 
     /**
-     * Cache duration in seconds (1 hour).
+     * Get cache duration in seconds.
+     * Uses 60 seconds in local environment for fast auto-updates, 1 hour in production.
      */
-    protected int $cacheTtl = 3600;
+    public function getCacheTtl(): int
+    {
+        if (env('GITHUB_CACHE_TTL') !== null) {
+            return (int) env('GITHUB_CACHE_TTL');
+        }
+
+        return app()->environment('local') ? 60 : 3600;
+    }
 
     /**
      * Fetch public repositories from GitHub API.
      *
      * Returns cached data when available. Falls back to empty array on failure.
      *
-     * @param int $perPage Number of repos to fetch
-     * @return array
+     * @param  int  $perPage  Number of repos to fetch
      */
     public function getRepositories(int $perPage = 30): array
     {
-        $cacheKey = "github_repos_{$this->username}";
+        $username = $this->getUsername();
+        $cacheKey = "github_repos_{$username}";
 
-        return Cache::remember($cacheKey, $this->cacheTtl, function () use ($perPage) {
+        // Force refresh cache if ?refresh=1 is passed in request
+        if (request()->has('refresh')) {
+            Cache::forget($cacheKey);
+            Cache::forget("github_stats_{$username}");
+            Cache::forget("github_skills_{$username}");
+        }
+
+        return Cache::remember($cacheKey, $this->getCacheTtl(), function () use ($cacheKey, $username, $perPage) {
             try {
-                $response = Http::withHeaders([
+                $headers = [
                     'Accept' => 'application/vnd.github.v3+json',
                     'User-Agent' => 'Laravel-Portfolio',
-                ])->timeout(10)->get("https://api.github.com/users/{$this->username}/repos", [
-                    'sort' => 'updated',
-                    'direction' => 'desc',
-                    'per_page' => $perPage,
-                    'type' => 'owner',
-                ]);
+                ];
+
+                if ($token = env('GITHUB_TOKEN')) {
+                    $headers['Authorization'] = "Bearer {$token}";
+                }
+
+                $response = Http::withHeaders($headers)
+                    ->timeout(10)
+                    ->get("https://api.github.com/users/{$username}/repos", [
+                        'sort' => 'updated',
+                        'direction' => 'desc',
+                        'per_page' => $perPage,
+                        'type' => 'all',
+                    ]);
 
                 if ($response->successful()) {
                     return $this->transformRepositories($response->json());
@@ -51,33 +77,37 @@ class GitHubService
                     'body' => $response->body(),
                 ]);
 
-                return [];
+                return Cache::get("{$cacheKey}_stale", []);
             } catch (\Exception $e) {
                 Log::error('GitHub API error', ['message' => $e->getMessage()]);
-                return [];
+
+                return Cache::get("{$cacheKey}_stale", []);
             }
         });
     }
 
     /**
      * Get computed portfolio stats automatically from GitHub data.
-     *
-     * @return array
      */
     public function getStats(): array
     {
-        $cacheKey = "github_stats_{$this->username}";
+        $username = $this->getUsername();
+        $cacheKey = "github_stats_{$username}";
 
-        return Cache::remember($cacheKey, $this->cacheTtl, function () {
+        if (request()->has('refresh')) {
+            Cache::forget($cacheKey);
+        }
+
+        return Cache::remember($cacheKey, $this->getCacheTtl(), function () {
             $repos = $this->getRepositories(100);
 
-            // Total projects count
+            // Total projects count from GitHub
             $projectsCount = count($repos);
 
-            // Collect unique technologies and languages
+            // Collect unique technologies and languages from GitHub repos
             $languages = collect($repos)->pluck('language')->filter()->unique();
             $topics = collect($repos)->pluck('topics')->flatten()->filter()->unique();
-            
+
             // Core technologies stack + detected repo languages
             $baseTechs = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'Node.js', 'MySQL', 'REST API'];
             $allTechs = $languages->merge($topics)->merge($baseTechs)->unique()->values();
@@ -85,28 +115,41 @@ class GitHubService
 
             // Calculate estimated lines of code (KB size * ~45 lines/KB)
             $totalKb = collect($repos)->sum('size');
-            $linesOfCode = max(10000, $totalKb * 45);
+            $linesOfCode = max(12500, (int) ($totalKb * 45));
+
+            // Calculate learning years dynamically from earliest repository creation date
+            $earliestYear = collect($repos)
+                ->pluck('created_at')
+                ->filter()
+                ->map(fn ($date) => (int) date('Y', strtotime($date)))
+                ->min() ?: (date('Y') - 2);
+
+            $calculatedYears = max(1, (int) date('Y') - $earliestYear + 1);
+            $yearsLearning = env('PORTFOLIO_YEARS_LEARNING', $calculatedYears);
 
             return [
                 'projects' => $projectsCount > 0 ? $projectsCount : 3,
                 'technologies' => $techCount > 0 ? $techCount : 8,
-                'years' => 3,
+                'years' => $yearsLearning,
                 'lines_of_code' => $linesOfCode,
-                'lines_of_code_formatted' => number_format($linesOfCode, 0, ',', '.') . '+',
+                'lines_of_code_formatted' => number_format($linesOfCode, 0, ',', '.').'+',
             ];
         });
     }
 
     /**
      * Get dynamic skills aggregated directly from GitHub repositories.
-     *
-     * @return array
      */
     public function getSkills(): array
     {
-        $cacheKey = "github_skills_{$this->username}";
+        $username = $this->getUsername();
+        $cacheKey = "github_skills_{$username}";
 
-        return Cache::remember($cacheKey, $this->cacheTtl, function () {
+        if (request()->has('refresh')) {
+            Cache::forget($cacheKey);
+        }
+
+        return Cache::remember($cacheKey, $this->getCacheTtl(), function () {
             $repos = $this->getRepositories(100);
 
             // Aggregate language frequency and topics from GitHub repos
@@ -167,14 +210,14 @@ class GitHubService
                 ];
             }
 
-            // Dynamically add any newly discovered languages from GitHub repos that are not in default lists
+            // Dynamically add any newly discovered languages from GitHub repos
             foreach ($languageCounts as $lang => $count) {
                 $alreadyIncluded = collect($frontendList)->pluck('name')
                     ->merge(collect($backendList)->pluck('name'))
                     ->merge(collect($toolsList)->pluck('name'))
                     ->contains($lang);
 
-                if (!$alreadyIncluded) {
+                if (! $alreadyIncluded) {
                     $percentage = min(95, max(60, 60 + ($count * 8)));
                     $backendList[] = [
                         'name' => $lang,
@@ -195,13 +238,13 @@ class GitHubService
     /**
      * Transform raw GitHub API data into a clean format for the portfolio.
      *
-     * @param array $repos Raw GitHub API response
+     * @param  array  $repos  Raw GitHub API response
      * @return array Transformed repository data
      */
     protected function transformRepositories(array $repos): array
     {
         return collect($repos)
-            ->filter(fn($repo) => !$repo['fork'] && !$repo['archived'])
+            ->filter(fn ($repo) => ! $repo['archived'])
             ->map(function ($repo) {
                 return [
                     'name' => $this->formatRepoName($repo['name']),
@@ -213,6 +256,7 @@ class GitHubService
                     'stars' => $repo['stargazers_count'],
                     'forks' => $repo['forks_count'],
                     'size' => $repo['size'] ?? 0,
+                    'created_at' => $repo['created_at'] ?? null,
                     'updated_at' => $repo['updated_at'],
                     'topics' => $repo['topics'] ?? [],
                 ];
@@ -225,7 +269,7 @@ class GitHubService
      * Format repository name into a human-readable title.
      * e.g., "my-cool-project" → "My Cool Project"
      *
-     * @param string $name Raw repository name
+     * @param  string  $name  Raw repository name
      * @return string Formatted name
      */
     protected function formatRepoName(string $name): string
